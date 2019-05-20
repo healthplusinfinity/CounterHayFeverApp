@@ -1,0 +1,68 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="3.6.0.293080" />
+    <PackageReference Include="Xamarin.Forms.Maps" Version="3.6.0.293080" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="XLabs.Forms" Version="2.0.5782" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
+    <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
+    <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utils\" />
+    <Folder Include="Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="baseline_sentiment_very_satisfied_24px.svg" />
+    <None Remove="test.png" />
+    <None Remove="Images\test.png" />
+    <None Remove="Images\sentiment_satisfied.png" />
+    <None Remove="Images\sentiment_satisfied_1.png" />
+    <None Remove="Images\sentiment_med_dissatisfied.png" />
+    <None Remove="Images\sentiment_dissatisfied.png" />
+    <None Remove="Images\leaf.png" />
+    <None Remove="Images\leaf_unshaded.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\AboutPage.xaml" />
+    <EmbeddedResource Remove="Views\ConstructionPage.xaml" />
+    <EmbeddedResource Remove="Views\MainPage.xaml" />
+    <EmbeddedResource Remove="Views\MenuPage.xaml" />
+    <EmbeddedResource Remove="Views\SymptomsPage.xaml" />
+    <EmbeddedResource Remove="Views\TreePage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\sentiment_satisfied.png" />
+    <EmbeddedResource Include="Images\sentiment_med_dissatisfied.png" />
+    <EmbeddedResource Include="Images\sentiment_dissatisfied.png" />
+    <EmbeddedResource Include="Images\leaf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Models\HomeMenuItem.cs" />
+    <Compile Remove="Models\SuburbModel.cs" />
+    <Compile Remove="ViewModels\AboutViewModel.cs" />
+    <Compile Remove="Views\AboutPage.xaml.cs" />
+    <Compile Remove="Views\ConstructionMap.cs" />
+    <Compile Remove="Views\ConstructionPage.xaml.cs" />
+    <Compile Remove="Views\MainPage.xaml.cs" />
+    <Compile Remove="Views\MenuPage.xaml.cs" />
+    <Compile Remove="Views\SymptomsPage.xaml.cs" />
+    <Compile Remove="Views\TreePage.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\NewItemPage.xaml.cs">
+      <DependentUpon>SymptomsPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

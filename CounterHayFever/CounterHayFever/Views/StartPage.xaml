@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="CounterHayFever.Views.StartPage"
+             BackgroundColor="#2196F3">
+    
+    <StackLayout HorizontalOptions="CenterAndExpand"
+                 VerticalOptions="CenterAndExpand">
+        
+        <Label x:Name="appLabel" 
+                Text="Counter Hay-Fever" 
+                TextColor="White"
+                FontSize="40"
+                FontAttributes="Bold"/>
+        
+        <Label Text="Health+∞"
+               TextColor="White"
+               XAlign="Center"/>
+        
+        <ActivityIndicator x:Name="indicator"
+                           IsVisible="true"
+                           IsEnabled="true"
+                           IsRunning="true"
+                           Color="White"/>
+    </StackLayout>
+    
+    <ContentPage.Content>
+    </ContentPage.Content>
+</ContentPage>

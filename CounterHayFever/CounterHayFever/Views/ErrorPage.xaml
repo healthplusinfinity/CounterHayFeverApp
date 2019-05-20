@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="CounterHayFever.Views.ErrorPage"
+             x:Name="errorPage">
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="Black"
+                   BorderColor="Black"
+                   HeightRequest="50"
+                   VerticalOptions="StartAndExpand"
+                   HorizontalOptions="FillAndExpand">
+                <Frame.Content>
+                    <Label Text="Error"
+                           TextColor = "White"
+                           HorizontalTextAlignment = "Center"
+                           VerticalTextAlignment = "Center"
+                           FontAttributes = "Bold"
+                           FontSize="30"/>
+                </Frame.Content>
+            </Frame>
+            <Label Text="Please restart the application and provide necessary permissions. Ensure you are connected to the internet."
+                   HorizontalOptions="Center"
+                   VerticalOptions="StartAndExpand"
+                   TextColor="Black"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Start"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

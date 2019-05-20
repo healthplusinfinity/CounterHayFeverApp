@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="CounterHayFever.Views.WeatherPage"
+             Title="Weather">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand"
+                     Padding="10,10,10,10">
+            
+                <Frame Padding="1,1,1,1" BorderColor="Gray" CornerRadius="10">
+                    <Frame.Content>
+                        <StackLayout>
+                            <SearchBar x:Name="searchBar"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="StartAndExpand" 
+                                    Placeholder="Look for a location..."
+                                    Margin="0,0,0,10"/>
+                        
+                            <ListView x:Name="suggestionsList"
+                                      VerticalOptions="StartAndExpand"
+                                      HorizontalOptions="FillAndExpand"
+                                      IsVisible="false" 
+                                      SeparatorVisibility="None"/>
+                        </StackLayout>
+                    </Frame.Content>
+                </Frame>
+                
+                <Grid VerticalOptions="StartAndExpand"
+                      HorizontalOptions="FillAndExpand">
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <Frame x:Name="PredictionFrame"
+                           Grid.Row="0" Grid.Column="0"
+                           Grid.RowSpan="2" Grid.ColumnSpan="2"
+                           BorderColor="Gray"
+                           VerticalOptions="CenterAndExpand">
+                        <Frame.Content>
+                            <StackLayout >
+                                <Label x:Name="date"
+                                   TextColor="Black"
+                                   FontSize="Small"
+                                   HorizontalTextAlignment="Center"/>
+                                <StackLayout Orientation="Horizontal"
+                                             HorizontalOptions="CenterAndExpand">
+                                    <Label
+                                       TextColor="Black"
+                                       Text="Allergy Risk:"
+                                       HorizontalTextAlignment="End"
+                                       FontSize="Large"
+                                       FontAttributes="Bold" />
+                                    <Label x:Name="risk"
+                                           FontSize="Large"
+                                           FontAttributes="Bold"
+                                           HorizontalTextAlignment="Start" />
+                                    <Image x:Name="image" WidthRequest="24" HeightRequest="24"/>
+                                    <Button Image="info.png" BorderColor="White" 
+                                            BackgroundColor="White" 
+                                            HeightRequest="10" 
+                                            Clicked="Button_Clicked" 
+                                            HorizontalOptions="Start" 
+                                            WidthRequest="25" 
+                                            Padding="0,0,0,0"/>
+                                </StackLayout>
+                                <Label FontSize="Micro"
+                                       FontAttributes="Italic"
+                                       TextColor="Gray"
+                                       HorizontalTextAlignment="Center"
+                                       Text="* The allergy risk is predicted based on meteorological factors and pollination season." />
+                                
+                            </StackLayout>
+                        </Frame.Content>
+                    </Frame>
+                    
+                    <Frame x:Name="TempFrame"
+                           Grid.Row="2"
+                           Grid.Column="0"
+                           Padding="1,1,1,1">
+                        <Frame Margin="10,0,0,0" Padding="5,5,5,5">
+                            <Frame.Content>
+                                <StackLayout Margin="1,1,1,1">
+                                    <Label Text="Temperature"
+                                       TextColor="Black"
+                                       HorizontalTextAlignment="Center" />
+                                    <Label x:Name="tempLabel"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           FontSize="Large"
+                                           FontAttributes="Bold" />
+                                </StackLayout>
+                            </Frame.Content>
+                        </Frame>
+                    </Frame>
+                    
+                    <Frame x:Name="WindspeedFrame"
+                           Grid.Row="2"
+                           Grid.Column="1"
+                           Padding="1,1,1,1">
+                        <Frame Margin="10,0,0,0" Padding="5,5,5,5">
+                            <Frame.Content>
+                                <StackLayout Margin="1,1,1,1">
+                                    <Label Text="Wind Speed"
+                                       TextColor="Black"
+                                       HorizontalTextAlignment="Center" />
+                                    <Label x:Name="windspeedLabel"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           FontSize="Large"
+                                           FontAttributes="Bold" />
+                                </StackLayout>
+                            </Frame.Content>
+                        </Frame>
+                    </Frame>
+                    
+                    <Frame x:Name="PressureFrame"
+                           Grid.Row="3"
+                           Grid.Column="0"
+                           Padding="1,1,1,1">
+                        <Frame Margin="10,0,0,0" Padding="5,5,5,5">
+                            <Frame.Content>
+                                <StackLayout Margin="1,1,1,1">
+                                    <Label Text="Atmospheric pressure"
+                                       TextColor="Black"
+                                       HorizontalTextAlignment="Center" />
+                                    <Label x:Name="pressureLabel"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           FontSize="Large"
+                                           FontAttributes="Bold" />
+                                </StackLayout>
+                            </Frame.Content>
+                        </Frame>
+                    </Frame>
+                    
+                    <Frame x:Name="HumidityFrame"
+                           Grid.Row="3"
+                           Grid.Column="1"
+                           Padding="1,1,1,1">
+                        <Frame Margin="10,0,0,0" Padding="5,5,5,5">
+                            <Frame.Content>
+                                <StackLayout Margin="1,1,1,1">
+                                    <Label Text="Humidity"
+                                       TextColor="Black"
+                                       HorizontalTextAlignment="Center" />
+                                    <Label x:Name="humidityLabel"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           FontSize="Large"
+                                           FontAttributes="Bold" />
+                                </StackLayout>
+                            </Frame.Content>
+                        </Frame>
+                    </Frame>
+                </Grid>
+                <Label x:Name="ratingLabel"
+                       Text="How would you rate your symptoms today?"
+                       HorizontalTextAlignment="Center"/>
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="CenterAndExpand"
+                             Margin="0,10,0,10">
+                    <Label Text="Low" />
+                    <Image x:Name="image1" WidthRequest="24" HeightRequest="24" />
+                    <Image x:Name="image2" WidthRequest="24" HeightRequest="24" />
+                    <Image x:Name="image3" WidthRequest="24" HeightRequest="24" />
+                    <Image x:Name="image4" WidthRequest="24" HeightRequest="24" />
+                    <Image x:Name="image5" WidthRequest="24" HeightRequest="24" />
+                    <Label Text="High" />
+                </StackLayout>
+                <Label x:Name="lastRated" 
+                       VerticalTextAlignment="Start"
+                       HorizontalTextAlignment="Center" 
+                       IsVisible="false"
+                       FontAttributes="Italic"
+                       FontSize="Small"
+                       Margin="0,0,0,0"/>
+                
+                <Frame x:Name="PersonalisedPredictionFrame"
+                           HorizontalOptions="FillAndExpand"
+                           BorderColor="Gray"
+                           VerticalOptions="CenterAndExpand">
+                        <Frame.Content>
+                            <StackLayout >
+                                <StackLayout HorizontalOptions="CenterAndExpand">
+                                    <Label x:Name="riskHint"
+                                       TextColor="Black"
+                                       HorizontalTextAlignment="Center"
+                                       FontSize="Large"
+                                       FontAttributes="Bold" />
+                                    <Label x:Name="personalisedRisk"
+                                           FontSize="Large"
+                                           FontAttributes="Bold"
+                                           HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                                <Label x:Name="personalizedRatingValidity"
+                                       FontSize="Micro"
+                                       FontAttributes="Italic"
+                                       TextColor="Gray"
+                                       HorizontalTextAlignment="Center"
+                                       IsVisible="true"/>
+                                <Label x:Name="numberOfUsersLabel"
+                                       FontSize="Micro"
+                                       FontAttributes="Italic"
+                                       TextColor="Gray"
+                                       HorizontalTextAlignment="Center"/>
+                            </StackLayout>
+                        </Frame.Content>
+                    </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
+

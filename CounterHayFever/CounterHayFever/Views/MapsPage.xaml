@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="CounterHayFever.Views.MapsPage"
+             Title="Configure Location">
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical" Padding="10,20,10,0" Spacing="10"
+                         VerticalOptions="StartAndExpand">
+                <Label Text="Configure Home and Work Locations. You can clear locations to cancel notifications." 
+                       HorizontalTextAlignment="Center"
+                       FontSize="Medium"/>
+                <Frame Padding="1,1,1,1" BorderColor="Gray" CornerRadius="10">
+                    <Frame.Content>
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal">
+
+                                <SearchBar x:Name="searchBarHome"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="StartAndExpand" 
+                                    Placeholder="Pick home location..."
+                                    Margin="0,0,-20,10"/>
+
+                                <Image
+                                   HeightRequest="20"
+                                   VerticalOptions="FillAndExpand"
+                                  
+                                   Source="Home.png"
+                                   WidthRequest="20"
+                                   />
+                            </StackLayout>
+                            <ListView x:Name="homeSuggestionsList"
+                                      VerticalOptions="StartAndExpand"
+                                      HorizontalOptions="FillAndExpand"
+                                      IsVisible="false" 
+                                      SeparatorVisibility="None"/>
+                        </StackLayout>
+                    </Frame.Content>
+                </Frame>
+                    
+                <Frame Padding="1,1,1,1" BorderColor="Gray" CornerRadius="10">
+                    <Frame.Content>
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                            <SearchBar x:Name="searchBarWork"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="StartAndExpand" 
+                                    Placeholder="Pick work location..."
+                                    Margin="0,0,-20,10"/>
+                            <Image
+                                   HeightRequest="20"
+                                   VerticalOptions="FillAndExpand"
+                                 
+                                   Source="Work.png"
+                                   WidthRequest="20" />
+                            
+                        </StackLayout>
+
+                        <ListView x:Name="workSuggestionsList"
+                                      VerticalOptions="StartAndExpand"
+                                      HorizontalOptions="FillAndExpand"
+                                      IsVisible="false" 
+                                      SeparatorVisibility="None"/>
+                        </StackLayout>
+                    </Frame.Content>
+                </Frame>
+                <Label Text="You will receive notifications for these places based on user ratings."
+                       FontSize="Micro"
+                       FontAttributes="Italic"
+                       HorizontalTextAlignment="Center"/>
+                <Button Margin="0,10,0,0" 
+                        Text="Save" 
+                        BackgroundColor="#2196F3" 
+                        TextColor="White" 
+                        HorizontalOptions="CenterAndExpand"
+                        Clicked="Handle_Clicked"></Button>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

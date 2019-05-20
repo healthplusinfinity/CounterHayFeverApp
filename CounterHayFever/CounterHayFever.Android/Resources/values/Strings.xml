@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<resources>
+  <string name="channel_name">ConterHayFeverNotifications</string>
+  <string name="channel_description">Notification channel for Counter Hay-Fever to display daily alerts.</string>
+</resources>
