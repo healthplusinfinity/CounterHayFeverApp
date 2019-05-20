@@ -13,17 +13,21 @@ namespace CounterHayFever.Views
     {
         #region Constants
         #region Bounds for weather parameters
-        private const double WINDSPEED_LOWER_BOUND = 20;
+        private const double WINDSPEED_LOWER_BOUND = 21;
 
         private const double WINDSPEED_UPPER_BOUND = 35;
 
-        private const double TEMP_LOWER_BOUND = 20;
+        private const double TEMP_LOWER_BOUND = 21;
 
         private const double TEMP_UPPER_BOUND = 27;
 
-        private const double HUMIDITY_LOWER_BOUND = 71;
+        private const double HUMIDITY_LOWER_BOUND = 70;
 
         private const double HUMIDITY_UPPER_BOUND = 31;
+
+        private const double PRESSURE_UPPER_BOUND = 1020;
+
+        private const double PRESSURE_LOWER_BOUND = 1011;
         #endregion
 
         /// <summary>
@@ -232,7 +236,7 @@ namespace CounterHayFever.Views
             #region Process Temperature
             tempLabel.Text = $"{weatherData.Temperature}°C";
 
-            if (weatherData.Temperature <= TEMP_LOWER_BOUND)
+            if (weatherData.Temperature < TEMP_LOWER_BOUND)
             {
                 TempFrame.BackgroundColor = Color.Green;
                 TempFrame.BorderColor = Color.Green;
@@ -252,7 +256,7 @@ namespace CounterHayFever.Views
             #region Process Wind speed
             windspeedLabel.Text = $"{weatherData.WindSpeed} km/h";
 
-            if (weatherData.WindSpeed <= WINDSPEED_LOWER_BOUND)
+            if (weatherData.WindSpeed < WINDSPEED_LOWER_BOUND)
             {
                 WindspeedFrame.BackgroundColor = Color.Green;
                 WindspeedFrame.BorderColor = Color.Green;
@@ -271,18 +275,32 @@ namespace CounterHayFever.Views
 
             #region Process pressure
             pressureLabel.Text = $"{weatherData.Pressure} hPa";
-            PressureFrame.BorderColor = Color.Green;
-            PressureFrame.BackgroundColor = Color.Green;
+            if (weatherData.Pressure > PRESSURE_UPPER_BOUND)
+            {
+                PressureFrame.BorderColor = Color.Green;
+                PressureFrame.BackgroundColor = Color.Green;
+            }
+            else if (weatherData.Pressure <= PRESSURE_UPPER_BOUND && weatherData.Pressure >= PRESSURE_LOWER_BOUND)
+            {
+                PressureFrame.BorderColor = Color.Orange;
+                PressureFrame.BackgroundColor = Color.Orange;
+            }
+            else
+            {
+                PressureFrame.BorderColor = Color.Red;
+                PressureFrame.BackgroundColor = Color.Red;
+            }
+
             #endregion
 
             #region Process humidity
             humidityLabel.Text = $"{weatherData.Humidity}%";
-            if (weatherData.Humidity >= HUMIDITY_LOWER_BOUND)
+            if (weatherData.Humidity > HUMIDITY_LOWER_BOUND)
             {
                 HumidityFrame.BackgroundColor = Color.Green;
                 HumidityFrame.BorderColor = Color.Green;
             }
-            else if (weatherData.Humidity < HUMIDITY_LOWER_BOUND && weatherData.Humidity >= HUMIDITY_UPPER_BOUND)
+            else if (weatherData.Humidity <= HUMIDITY_LOWER_BOUND && weatherData.Humidity >= HUMIDITY_UPPER_BOUND)
             {
                 HumidityFrame.BackgroundColor = Color.Orange;
                 HumidityFrame.BorderColor = Color.Orange;
