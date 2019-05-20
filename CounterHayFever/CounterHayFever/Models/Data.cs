@@ -16,14 +16,19 @@ namespace CounterHayFever.Models
     public static class Data
     {
         /// <summary>
-        /// The smallest value of score above which everything is <c>Low</c>
+        /// The value of score above which everything is <c>Low</c>
         /// </summary>
-        private const double LOW_LOWER_BOUND = 30.55;
+        private const double LOW_LOWER_BOUND = 283;
 
         /// <summary>
-        /// The highest value of score below which everything is <c>High</c>.
+        /// The value of score below which everything is <c>High</c>.
         /// </summary>
-        private const double HIGH_UPPER_BOUND = 79.8;
+        private const double HIGH_UPPER_BOUND = 276;
+
+        /// <summary>
+        /// The tree count threshold.
+        /// </summary>
+        private const int TREE_COUNT_THRESHOLD = 1800;
 
         /// <summary>
         /// The task to fetch suburb data.
@@ -117,17 +122,28 @@ namespace CounterHayFever.Models
                     }
                     else
                     {
-                        if (weather.Score <= LOW_LOWER_BOUND)
+                        WeatherSeverity severity = WeatherSeverity.Low;
+                        if (weather.Score > LOW_LOWER_BOUND)
                         {
-                            weather.Severity = WeatherSeverity.Low;
+                            severity = WeatherSeverity.Low;
                         }
-                        else if (weather.Score > LOW_LOWER_BOUND && weather.Score <= HIGH_UPPER_BOUND)
+                        else if (weather.Score <= LOW_LOWER_BOUND && weather.Score >= HIGH_UPPER_BOUND)
                         {
-                            weather.Severity = WeatherSeverity.Medium;
+                            severity = WeatherSeverity.Medium;
                         }
                         else
                         {
-                            weather.Severity = WeatherSeverity.High;
+                            severity = WeatherSeverity.High;
+                        }
+
+                        weather.Severity = severity;
+                        if (weather.TreeCount == 0 && (severity == WeatherSeverity.Medium || severity == WeatherSeverity.High))
+                        {
+                            weather.Severity = severity - 1;
+                        }
+                        else if (weather.TreeCount > TREE_COUNT_THRESHOLD && (severity == WeatherSeverity.Low || severity == WeatherSeverity.Medium))
+                        {
+                            weather.Severity = severity + 1;
                         }
                     }
 
